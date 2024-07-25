@@ -6,10 +6,9 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient()
-
+const prisma = new PrismaClient();
 
 const createWindow = () => {
   // Create the browser window.
@@ -46,19 +45,17 @@ app.on('window-all-closed', () => {
   }
 });
 
-
-
 ipcMain.handle('db:create-user', async (_, data) => {
   const user = await prisma.user.create({
-    data
-  })
+    data,
+  });
   return user;
-})
+});
 
 ipcMain.handle('db:get-users', async () => {
   const users = await prisma.user.findMany();
-  return users
-})
+  return users;
+});
 
 app.on('activate', () => {
   // On OS X it's common to re-create a window in the app when the
