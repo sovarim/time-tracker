@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "darwin", "darwin-arm64"]
 }
 
@@ -12,6 +12,44 @@ datasource db {
 }
 
 model User {
-  id        Int @id @default(autoincrement())
-  name      String
+  id        Int       @id @default(autoincrement())
+  firstName String
+  lastName  String
+  projects  Project[]
+  tasks     Task[]
+}
+
+model DateTimeSpent {
+  id            Int       @id @default(autoincrement())
+  dateTimeStart DateTime
+  dateTimeEnd   DateTime?
+  task          Task?     @relation(fields: [taskId], references: [id])
+  taskId        Int?
+}
+
+model Tag {
+  id     Int    @id @default(autoincrement())
+  name   String
+  task   Task?  @relation(fields: [taskId], references: [id])
+  taskId Int?
+}
+
+model Task {
+  id            Int             @id @default(autoincrement())
+  name          String
+  description   String?
+  project       Project?        @relation(fields: [projectId], references: [id])
+  projectId     Int?
+  dateTimeSpent DateTimeSpent[]
+  user          User            @relation(fields: [userId], references: [id])
+  userId        Int
+  tags          Tag[]
+}
+
+model Project {
+  id     Int    @id @default(autoincrement())
+  name   String
+  tasks  Task[]
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int
 }

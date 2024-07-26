@@ -6,11 +6,11 @@ const App = () => {
   const [name, setName] = useState('');
 
   const getUsers = async () => {
-    const _users = await window.db.getUsers();
+    const _users = await window.db.getAllUsers();
     setUsers(_users);
   };
   const handleCreateUser = async () => {
-    await window.db.createUser({ name });
+    await window.db.createUser({  name });
     getUsers();
   };
 

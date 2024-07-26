@@ -4,5 +4,5 @@ import { contextBridge, ipcRenderer } from 'electron';
 
 contextBridge.exposeInMainWorld('db', {
   createUser: (...args: any) => ipcRenderer.invoke('db:create-user', ...args),
-  getUsers: () => ipcRenderer.invoke('db:get-users'),
+  getAllUsers: () => ipcRenderer.invoke('db:get-users'),
 });
