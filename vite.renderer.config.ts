@@ -1,7 +1,7 @@
 import type { ConfigEnv, UserConfig } from 'vite';
 import { defineConfig } from 'vite';
-import { pluginExposeRenderer } from './vite.base.config';
-import react from '@vitejs/plugin-react'
+import { pluginExposeRenderer, resolveAlias } from './vite.base.config';
+import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config
 export default defineConfig((env) => {
@@ -19,6 +19,7 @@ export default defineConfig((env) => {
     plugins: [pluginExposeRenderer(name), react()],
     resolve: {
       preserveSymlinks: true,
+      alias: resolveAlias(),
     },
     clearScreen: false,
   } as UserConfig;
