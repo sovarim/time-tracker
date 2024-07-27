@@ -1,6 +1,13 @@
 import { PropsWithChildren } from 'react';
-import { CssVarsProvider } from '@mui/joy';
+import { CssBaseline, CssVarsProvider } from '@mui/joy';
+import { ResetCss } from '@/client/shared/styles';
 
 export const Providers = ({ children }: PropsWithChildren) => {
-  return <CssVarsProvider>{children}</CssVarsProvider>;
+  return (
+    <CssVarsProvider>
+      <ResetCss />
+      <CssBaseline />
+      {children}
+    </CssVarsProvider>
+  );
 };
