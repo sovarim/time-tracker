@@ -1,4 +1,4 @@
-import { Header } from '@/client/widgets/Header';
+import { Button } from '@/client/shared/ui/button';
 import { PropsWithChildren } from 'react';
 
 export type MainLayoutProps = PropsWithChildren;
@@ -6,7 +6,7 @@ export type MainLayoutProps = PropsWithChildren;
 export const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <div>
-      <Header />
+      <Button size='default'>123</Button>
     </div>
   );
 };

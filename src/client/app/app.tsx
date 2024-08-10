@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { Providers } from './providers/Providers';
 import Tasks from '@/client/screens/Tasks';
+import '@/client/shared/styles/global.css';
 
 const App = () => {
   return (

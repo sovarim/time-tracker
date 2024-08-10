@@ -1,5 +1,4 @@
-import { User, Prisma  } from '@prisma/client';
-
+import { User, Prisma } from '@prisma/client';
 
 export interface IDbApi {
   createUser: (user: Prisma.UserCreateInput) => Promise<User>;
