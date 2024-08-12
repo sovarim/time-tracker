@@ -1,14 +1,10 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow } from 'electron';
 import path from 'path';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
-
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
 
 const createWindow = () => {
   // Create the browser window.
@@ -40,18 +36,6 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
   }
-});
-
-ipcMain.handle('db:create-user', async (_, data) => {
-  const user = await prisma.user.create({
-    data,
-  });
-  return user;
-});
-
-ipcMain.handle('db:get-users', async () => {
-  const users = await prisma.user.findMany();
-  return users;
 });
 
 app.on('activate', () => {

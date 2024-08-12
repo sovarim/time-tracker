@@ -2,8 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
 @layer base {
   :root {
+    --sidebar-width: 300px;
+    
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
